@@ -25,7 +25,7 @@
 					{:then result}	
 						<span>{result?.city},{result?.postal_code}</span>
 					{/await}
-					<!-- <span>Tanuku,534211</span> -->
+					<!-- <span>Vijayavaada,534211</span> -->
 				</p>
 			</SvelteTooltip>
 		</div>
