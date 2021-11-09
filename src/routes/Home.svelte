@@ -1,6 +1,8 @@
 <script>
 	import  ProductCard from '$lib/ProductCard.svelte';
 	import  Spinner from '$lib/Spinner.svelte';
+	import { cartList } from '$store/store'
+
 
 	const fetchCategories = async () => {
 		const res = await fetch("https://fakestoreapi.com/products/categories");
@@ -11,6 +13,7 @@
 		const res = await fetch(`https://fakestoreapi.com/products/category/${item}`);
 		return (await res.json());
 	}
+
 
 
 </script>
@@ -31,4 +34,6 @@
 				</div>
 			{/await}
 		{/each}
+{:catch error}
+	<pre>error</pre>
 {/await}
