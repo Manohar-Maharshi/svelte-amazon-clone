@@ -1,7 +1,8 @@
 <script>
+	import { cartList } from '$store/store'
   	import { Link} from "svelte-routing";
-
 	import SvelteTooltip from 'svelte-tooltip';
+
 	const getLoc = async () =>{
 		const res = await fetch("https://ipgeolocation.abstractapi.com/v1/?api_key=f970ab993e5f46a39a956232f3f1c4f0");
 		return(await res.json());
@@ -66,7 +67,7 @@
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
 						</svg>
 					</div>
-					<p class="font-semibold leading-none">0</p>
+					<p class="font-semibold leading-none">{$cartList.length}</p>
 				</div>
 			</Link>
 		</div>
