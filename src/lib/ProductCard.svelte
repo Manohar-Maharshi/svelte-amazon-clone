@@ -1,16 +1,25 @@
 <script>
-	import { cartList } from '$store/store'
+	import { cartList,wishList } from '$store/store'
 	export let item;
 
 
 	const addToCart = (productInfo) => {
 		  for(let item of $cartList) {
 		    if(item.id === productInfo.id) {
-				alert("already in cart")
+				alert("Already in cart")
 				return;
 		     }
 		   }
   		$cartList = [...$cartList, productInfo]
+	}
+	const addToWishList = (productInfo) => {
+		  for(let item of $wishList) {
+		    if(item.id === productInfo.id) {
+				alert("Already in wishList")
+				return;
+		     }
+		   }
+  		$wishList = [...$wishList, productInfo]
 	}
 
 
@@ -34,7 +43,7 @@
 	</div>
 	<div class="w-full flex flex-col items-center space-y-1 mt-1 mb-1">
 		<div class="flex items-center justify-between space-x-1 w-full text-center text-sm">
-			<button class="text-xs font-bold w-full border bg-[#ffa41c] py-1.5 flex items-center justify-center">
+			<button  on:click={() => addToWishList({...item,quantity:1})} class="text-xs font-bold w-full border bg-[#ffa41c] py-1.5 flex items-center justify-center">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 				  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
 				</svg>
