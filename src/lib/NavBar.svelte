@@ -1,4 +1,5 @@
 <script>
+	import NavLink from './NavLink.svelte'
 	import { cartList } from '$store/store'
   	import { Link} from "svelte-routing";
 	import SvelteTooltip from 'svelte-tooltip';
@@ -10,12 +11,12 @@
 </script>
 <nav class="h-[60px] w-full flex items-center bg-[#131921] !text-gray-100">
 	<div class="w-full flex items-center justify-between space-x-10 mx-auto px-4">
-		<Link to="/">
+		<NavLink to="/">
 			<img class="h-8 mt-1.5" src="http://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon" />
-		</Link>
+		</NavLink>
 		<div class="cursor-default leading-tight text-sm flex items-start flex-col">
 			<p class="text-xs ml-1 opacity-80">Deliver to</p>
-			<SvelteTooltip tip="Based on IP Address" bottom color="#131921">
+			<SvelteTooltip tip="Based on Your IP Address" bottom color="#131921">
 				<p class="font-semibold flex items-center space-x-1">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -50,7 +51,7 @@
 					<span>Sign in</span>
 				</p>
 			</div>
-				<Link to="wish-list">
+				<NavLink to="wish-list">
 					<div>
 						<span class="font-bold flex items-center space-x-1 font-bold">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,8 +60,8 @@
 							<span>WishList</span>
 						</span>
 					</div>
-				</Link>
-			<Link to="cart">
+				</NavLink>
+			<NavLink to="cart">
 				<div class="flex items-center space-x-1">
 					<div>
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
@@ -69,7 +70,7 @@
 					</div>
 					<p class="font-semibold leading-none">{$cartList.length}</p>
 				</div>
-			</Link>
+			</NavLink>
 		</div>
 	</div>
 </nav>
