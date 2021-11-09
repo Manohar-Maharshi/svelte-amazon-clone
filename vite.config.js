@@ -9,6 +9,7 @@ export default defineConfig({
 	    alias: {
 	      $lib: path.resolve('./src/lib'),
 	      $routes: path.resolve('./src/routes'),
+	      $store: path.resolve('./src/store'),
 	    }
 	}
 })
