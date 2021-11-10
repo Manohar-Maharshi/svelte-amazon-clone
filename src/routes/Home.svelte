@@ -1,7 +1,6 @@
 <script>
 	import  ProductCard from '$lib/ProductCard.svelte';
 	import  Spinner from '$lib/Spinner.svelte';
-	import { cartList } from '$store/store'
 
 
 	const fetchCategories = async () => {
@@ -23,10 +22,11 @@
 {:then result}
 		{#each result as item, index}
 			{#await fetchProductsByCategory(item)}
+				loading...
 			{:then result}
 				<div class="container mx-auto my-10 mt-5">
 					<p class="font-semibold border-b-2 border-yellow-700 inline-block capitalize text-2xl py-1">{item}</p>
-					<div class="flex items-start flex-wrap">	
+					<div class="flex items-start md:justify-start justify-center flex-wrap">	
 						{#each result as item (item.id)}
 							<ProductCard {item} />
 						{/each}

@@ -1,38 +1,83 @@
 <script>
-	import { cartList,wishList } from '$store/store'
+	import { user } from '$store/store'
 	import { navigate } from "svelte-routing";
+
+	import { collection, addDoc,updateDoc,doc,setDoc,getDoc,increment   } from "firebase/firestore"; 
+	import { db,provider,auth } from '$store/firebase'
+
 
 	export let item;
 
 
-	const addToCart = (productInfo) => {
-		  for(let item of $cartList) {
-		    if(item.id === productInfo.id) {
-				alert("Already in cart")
-				return;
-		     }
-		   }
-  		$cartList = [...$cartList, productInfo]
+	const addToCart = async (productInfo) => {
+		if($user){	
+			const docSnap = await getDoc(doc(db, "users",$user.uid,"cart",productInfo?.id.toString()));
+			if (docSnap.exists()) {
+				const hel = await updateDoc(doc(db, "users",$user.uid,"cart",docSnap.data().id.toString()), {
+				    'quantity' : increment(1),
+				});
+			} else {
+				await setDoc(doc(db, "users",$user.uid,"cart",productInfo.id.toString()), {
+					title : productInfo?.title,
+					quantity : productInfo?.quantity,
+					price : productInfo?.price,
+					image : productInfo?.image,
+					id : productInfo?.id,
+					rating : {
+						count : productInfo?.rating?.count,
+						rate : productInfo?.rating?.rate,
+					},
+				});
+			}
+		}else{
+			alert("Please Login First...then try to add item to cart")
+		}
 	}
 
-	const directBuy = (productInfo) => {
-		  for(let item of $cartList) {
-		    if(item.id === productInfo.id) {
-				alert("Waite a minute")
-				return;
-		     }
-		   }
-  		$cartList = [...$cartList, productInfo];
-  		navigate('/cart');
+	const directBuy = async (productInfo) => {
+		if($user){	
+			const docSnap = await getDoc(doc(db, "users",$user.uid,"cart",productInfo?.id.toString()));
+			if (docSnap.exists()) {
+				alert("Alredy in Cart")
+			} else {
+				await setDoc(doc(db, "users",$user.uid,"cart",productInfo.id.toString()), {
+					title : productInfo?.title,
+					quantity : productInfo?.quantity,
+					price : productInfo?.price,
+					image : productInfo?.image,
+					id : productInfo?.id,
+					rating : {
+						count : productInfo?.rating?.count,
+						rate : productInfo?.rating?.rate,
+					},
+				});
+				navigate('/cart')
+			}
+		}else{
+			alert("Please Login First...then try to add item to cart")
+		}
 	}
-	const addToWishList = (productInfo) => {
-		  for(let item of $wishList) {
-		    if(item.id === productInfo.id) {
-				alert("Already in wishList")
-				return;
-		     }
-		   }
-  		$wishList = [...$wishList, productInfo]
+	const addToWishList = async (productInfo) => {
+		if ($user) {		
+			const docSnap = await getDoc(doc(db, "users",$user.uid,"wish",productInfo?.id.toString()));
+			if (docSnap.exists()) {
+				alert("Alredy in wish-list")
+			} else {
+				await setDoc(doc(db, "users",$user.uid,"wish",productInfo.id.toString()), {
+					title : productInfo?.title,
+					quantity : productInfo?.quantity,
+					price : productInfo?.price,
+					image : productInfo?.image,
+					id : productInfo?.id,
+					rating : {
+						count : productInfo?.rating?.count,
+						rate : productInfo?.rating?.rate,
+					},
+				});
+			}
+		}else{
+			alert("Please Login First...then try to add item to wishList")
+		}
 	}
 
 
