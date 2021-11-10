@@ -134,11 +134,11 @@
 					<form on:submit|preventDefault={doneBuy} class="w-full flex flex-col items-start space-y-2.5 my-3">
 						<div class="w-full flex items-start flex-col space-y-1">
 							<label class=" font-semibold text-yellow-800 " for="name">Card Holder Name:</label>
-							<input required id="name" class="focus:border focus:border-[#ffa41c] focus:ring focus:ring-[#ffa41c] focus:outline-none px-2 py-1.5 w-full border border-gray-900" type="number" placeholder="Enter Card Holder Name">
+							<input required id="name" class="focus:border focus:border-[#ffa41c] focus:ring focus:ring-[#ffa41c] focus:outline-none px-2 py-1.5 w-full border border-gray-900" type="text" placeholder="Enter Card Holder Name">
 						</div>
 						<div class="w-full flex items-start flex-col space-y-1">
 							<label class=" font-semibold text-yellow-800 " for="location">Card Number:</label>
-							<input required id="location" class="focus:border focus:border-[#ffa41c] focus:ring focus:ring-[#ffa41c] focus:outline-none px-2 py-1.5 w-full border border-gray-900" type="text" placeholder="Enter Card Number">
+							<input required id="location" class="focus:border focus:border-[#ffa41c] focus:ring focus:ring-[#ffa41c] focus:outline-none px-2 py-1.5 w-full border border-gray-900" type="number" placeholder="Enter Card Number">
 						</div>
 						<div class="w-full flex items-start flex-col space-y-1">
 							<label class=" font-semibold text-yellow-800 " for="location">Expiration Date:</label>
